@@ -83,6 +83,7 @@ GEM
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    high_voltage (3.1.2)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -222,6 +223,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  high_voltage (~> 3.1)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)
