@@ -63,8 +63,4 @@ answers = Answer.create([{body: '1. "е"', question_id: questions[0].id},
 
 users = User.create([{name: 'Иван Иванов'}, {name: 'Петр Петров'}])
 
-examinations = Examination.create!([{test_id: tests[0].id, user_id: users[0].id}, 
-                                   {test_id: tests[4].id, user_id: users[0].id}, 
-                                    {test_id: tests[3].id, user_id: users[1].id}, 
-                                    {test_id: tests[2].id, user_id: users[1].id}])
 
