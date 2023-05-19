@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_17_210304) do
-
-  create_table "add_user_to_tests", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_add_user_to_tests_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2023_05_18_145831) do
 
   create_table "answers", force: :cascade do |t|
     t.string "body", null: false
@@ -34,15 +27,6 @@ ActiveRecord::Schema.define(version: 2023_05_17_210304) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "examinations", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "test_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["test_id"], name: "index_examinations_on_test_id"
-    t.index ["user_id"], name: "index_examinations_on_user_id"
-  end
-
   create_table "questions", force: :cascade do |t|
     t.string "body", null: false
     t.integer "test_id", null: false
@@ -52,12 +36,14 @@ ActiveRecord::Schema.define(version: 2023_05_17_210304) do
   end
 
   create_table "tests", force: :cascade do |t|
+    t.integer "user_id"
     t.string "title", null: false
     t.integer "level", default: 1
     t.integer "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_tests_on_category_id"
+    t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
   create_table "tests_users", id: false, force: :cascade do |t|
@@ -72,10 +58,8 @@ ActiveRecord::Schema.define(version: 2023_05_17_210304) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "add_user_to_tests", "users"
   add_foreign_key "answers", "questions"
-  add_foreign_key "examinations", "tests"
-  add_foreign_key "examinations", "users"
   add_foreign_key "questions", "tests"
   add_foreign_key "tests", "categories"
+  add_foreign_key "tests", "users"
 end
