@@ -4,6 +4,6 @@ class User < ApplicationRecord
 	has_many :tests, through: :tests_users
 
 	def find_test_by_level(level)
-		Test.joins(:tests_users).where(tests_users: {user_id: id}, level:  level,).pluck(:title)
+		Test.joins(:tests_users).where(tests_users: {user_id: id}, level:  level).pluck(:title)
 	end
 end
