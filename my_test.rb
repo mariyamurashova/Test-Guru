@@ -4,6 +4,5 @@ puts "Введите уровень сложности теста от 1 до 3"
  puts "#{user.name} прошел тесты:"
   puts user.find_test_by_level(level)
 end
-  category=Category.where(title: :English)
-  puts Test.tests_names(category[0])
+  puts Test.tests_names(:English)
 
