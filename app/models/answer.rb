@@ -5,6 +5,6 @@ class Answer < ApplicationRecord
   scope :just_correct, -> {where correct: true}
 
 def answers_amount 
-  errors.add(:base, :invalid, message: "More than 4 answers") if (questions.where(question_id: self.question_id)).length > 4
+  errors.add(:base, :invalid, message: "More than 4 answers") if question.answers.length > 4
 end
 end
