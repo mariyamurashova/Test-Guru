@@ -3,7 +3,6 @@ class QuestionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
-
     result = ["#{params.inspect}"]
     @questions = Question.where(test_id: params[:test_id].to_s)
     render inline:
@@ -20,9 +19,7 @@ class QuestionsController < ApplicationController
     render json: question.body
   end
 
-
 def new
-
 end
 
 def create
@@ -31,12 +28,10 @@ def create
 end
 
 def destroy
-question = Question.find(params[:id])
-question.destroy
-render plain: "Вопрос удален"
-
+  question = Question.find(params[:id])
+  question.destroy
+  render plain: "Вопрос удален"
 end
-
 
 private
 
