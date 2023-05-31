@@ -4,7 +4,6 @@ class QuestionsController < ApplicationController
 
   def index
 
-    result = ["#{params.inspect}"]
     @questions = Question.where(test_id: params[:test_id].to_s)
     render inline:
       '<p><%=@test.title%><br>
@@ -20,37 +19,35 @@ class QuestionsController < ApplicationController
     render json: question.body
   end
 
+  def new
 
-def new
+  end
 
-end
+  def create
+   question = Question.create(question_params)
+   render plain: question.inspect
+  end
 
-def create
- question = Question.create(question_params)
- render plain: question.inspect
-end
-
-def destroy
-question = Question.find(params[:id])
-question.destroy
-render plain: "Вопрос удален"
-
-end
+  def destroy
+  question = Question.find(params[:id])
+  question.destroy
+  render plain: "Вопрос удален"
+  end
 
 
-private
+  private
 
-def find_test
-  @test = Test.find(params[:test_id])
-end
+  def find_test
+    @test = Test.find(params[:test_id])
+  end
 
-def question_params
-  params.require(:question).permit(:body, :test_id)
-end
+  def question_params
+    params.require(:question).permit(:body, :test_id)
+  end
 
-def rescue_with_question_not_found
-  render plain: 'Question was not found'
-end
+  def rescue_with_question_not_found
+    render plain: 'Question was not found'
+  end
 
-end
+  end
 
