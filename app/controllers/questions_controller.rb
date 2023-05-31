@@ -3,7 +3,6 @@ class QuestionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
-    result = ["#{params.inspect}"]
     @questions = Question.where(test_id: params[:test_id].to_s)
     render inline:
       '<p><%=@test.title%><br>
