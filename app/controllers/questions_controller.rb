@@ -1,12 +1,10 @@
 class QuestionsController < ApplicationController
-before_action :find_test, only: %i[index]
-   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
+  before_action :find_test, only: %i[index]
+  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
-   def index
-
-     result = ["#{params.inspect}"]
-     @questions = Question.where(test_id: params[:test_id].to_s)
-     render inline:
+  def index
+    @questions = Question.where(test_id: params[:test_id].to_s)
+    render inline:
        '<p><%=@test.title%><br>
        <% @questions.each do |question| %>
        <%= question[:body]%><br>
@@ -20,23 +18,20 @@ before_action :find_test, only: %i[index]
      render json: question.body
    end
 
+  def new
 
- def new
+  end
 
- end
-
- def create
-  question = Question.create(question_params)
-  render plain: question.inspect
- end
+  def create
+    question = Question.create(question_params)
+    render plain: question.inspect
+  end
 
  def destroy
- question = Question.find(params[:id])
- question.destroy
- render plain: "Вопрос удален"
-
+  question = Question.find(params[:id])
+  question.destroy
+  render plain: "Вопрос удален"
  end
-
 
  private
 
