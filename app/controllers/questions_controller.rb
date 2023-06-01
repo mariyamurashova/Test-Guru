@@ -12,10 +12,10 @@ class QuestionsController < ApplicationController
    end
 
    def show
-     test = Test.find(params[:test_id])
-     question = test.questions.find(params[:id])
-     result = ["#{params.inspect}"]
-     render json: question.body
+    test = Test.find(params[:test_id])
+    question = test.questions.find(params[:id])
+    result = ["#{params.inspect}"]
+    render json: question.body
    end
 
   def new
@@ -27,25 +27,25 @@ class QuestionsController < ApplicationController
     render plain: question.inspect
   end
 
- def destroy
-  question = Question.find(params[:id])
-  question.destroy
-  render plain: "Вопрос удален"
- end
+  def destroy
+    question = Question.find(params[:id])
+    question.destroy
+    render plain: "Вопрос удален"
+  end
 
- private
+  private
 
- def find_test
-   @test = Test.find(params[:test_id])
- end
+  def find_test
+    @test = Test.find(params[:test_id])
+  end
 
- def question_params
-   params.require(:question).permit(:body, :test_id)
- end
+  def question_params
+    params.require(:question).permit(:body, :test_id)
+  end
 
- def rescue_with_question_not_found
-   render plain: 'Question was not found'
- end
+  def rescue_with_question_not_found
+    render plain: 'Question was not found'
+  end
 
-end
+  end
 
