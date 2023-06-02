@@ -1,21 +1,18 @@
 class QuestionsController < ApplicationController
-  before_action :find_test, only: %i[index]
+  before_action :find_test, only: [:index, :create]
+  before_action :find_question, only: [:show]
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
-    @questions = Question.where(test_id: params[:test_id].to_s)
     render inline:
        '<p><%=@test.title%><br>
-       <% @questions.each do |question| %>
+       <% @test.questions.each do |question| %>
        <%= question[:body]%><br>
        <%end %></p>'
    end
 
    def show
-    test = Test.find(params[:test_id])
-    question = test.questions.find(params[:id])
-    result = ["#{params.inspect}"]
-    render json: question.body
+    render json: @question.body
    end
 
   def new
@@ -23,13 +20,16 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question = Question.create(question_params)
-    render plain: question.inspect
+    @question_new = @test.questions.new(question_params)
+      if @question_new.save
+        render plain: "question is saved"
+      else
+        render plain: "question isn'n saved"
+      end
   end
 
   def destroy
-    question = Question.find(params[:id])
-    question.destroy
+    @question.destroy
     render plain: "Вопрос удален"
   end
 
@@ -39,8 +39,12 @@ class QuestionsController < ApplicationController
     @test = Test.find(params[:test_id])
   end
 
+  def find_question
+    @question = Question.find(params[:id])
+  end
+
   def question_params
-    params.require(:question).permit(:body, :test_id)
+    params.require(:question).permit(:body, @test.questions)
   end
 
   def rescue_with_question_not_found
