@@ -1,13 +1,10 @@
-<h1>Create New Question</h1>
+<h1><%=question_header%></h1>
+<%= form_with(model: [@test, @question]) do |form| %>
+<p> 
+     <%= form.label :body %><br>
+     <%= form.text_field :body, value: @question.body %>
+</p>
+<p><%= form.submit %></p>
+<% end%>
+<%= link_to 'Back', test_questions_path %><br>
 
- <form action= "/tests/<%= params[:test_id] %>/questions/<%= params[:id] %>" method="post">
-     <input name = "authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-     <p>
-         <label for="question-body">Body:</label>
-         <input type="text" name="question[body]" id="question_body">
-          <input name = "question[test_id]" value="<%= params[:test_id] %>" type="hidden">
-
-     </p><br>
-
-     <input type="submit" value="Create">
- </form>
