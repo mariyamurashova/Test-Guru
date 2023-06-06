@@ -1,0 +1,12 @@
+<h1><%=question_header%></h1>
+<%= form_with(model: [@test, @question]) do |form| %>
+<p> 
+     <%= form.label :body %><br>
+     <%= form.text_field :body, value: @question.body %>
+</p>
+<p><%= form.submit %></p>
+<% end%>
+
+<%=link_to 'Back', link_back%>
+
+
