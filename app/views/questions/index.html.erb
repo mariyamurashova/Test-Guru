@@ -1,0 +1,12 @@
+
+<h1>Questions for Test<%=": #{@test.title}"%>  </h1>
+
+<p>
+  <%= link_to 'Create new question', new_test_question_path %><br>
+</p>
+  <table>
+    <%= render 'form' %>  
+    <%= render @questions %>     
+</table>
+ 
+
