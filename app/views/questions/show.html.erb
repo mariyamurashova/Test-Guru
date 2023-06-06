@@ -1,0 +1,15 @@
+<p>
+  <table>
+      <%= render 'form'%>
+      <td><%=@question[:body]%> </td>
+      <td><%=@question[:id]%> </td>
+
+      <%= render 'actions', resource: @question%>
+      
+  </table>
+  <br>
+</p>
+<%=link_to 'Back', link_back%>
+
+
+
