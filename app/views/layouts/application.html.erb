@@ -2,6 +2,16 @@
 <html>
   <head>
     <title>TestGuru</title>
+    <style type="text/css">
+   #footer {
+    position: fixed; /* Фиксированное положение */
+    left: 0; bottom: 0; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */
+    background: #39b54a; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    width: 100%; /* Ширина слоя */
+   }
+  </style>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,5 +22,6 @@
 
   <body>
     <%= yield %>
+    <%= render 'shared/footer'%>
   </body>
 </html>
