@@ -1,12 +1,12 @@
 module QuestionsHelper
   
   def question_header
-    #byebug
-    test = Test.find(@question.test_id)
+    
     if params[:action] == "edit" 
+      test = Test.find(@question.test_id)
       "Edit #{test.title} Question"
     else
-      "Create New Question for Test - #{test.title}"
+      "Create New Question for Test - #{@test.title}"
     end
   end
 
