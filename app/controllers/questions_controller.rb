@@ -1,36 +1,46 @@
 class QuestionsController < ApplicationController
-  before_action :find_test, only: [:index, :create]
-  before_action :find_question, only: [:show, :destroy]
-  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
+  before_action :find_test, only: [:index, :create, :new]
+  before_action :find_question, only: [:show, :destroy, :edit, :update]
+  #rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
-    render inline:
-       '<p><%=@test.title%><br>
-       <% @test.questions.each do |question| %>
-       <%= question[:body]%><br>
-       <%end %></p>'
+    @questions = @test.questions
+    
    end
 
    def show
-    render json: @question.body
+   
    end
 
   def new
+    @question = Question.new 
+  end
 
+  def edit
+    
+  end
+
+  def update
+      if @question.update(question_params)
+        redirect_to @question
+      else
+        render :edit
+      end
   end
 
   def create
-    @question_new = @test.questions.new(question_params)
-      if @question_new.save
-        render plain: "question is saved"
+    @question = @test.questions.new(question_params)
+      if @question.save
+        redirect_to test_questions_path
       else
-        render plain: "question isn'n saved"
+        render :new
       end
   end
 
   def destroy
     @question.destroy
-    render plain: "Вопрос удален"
+    
+    redirect_to  "/tests/#{@question[:test_id]}/questions"
   end
 
   private
