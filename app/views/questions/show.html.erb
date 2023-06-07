@@ -1,6 +1,11 @@
 <p>
   <table>
-      <%= render 'form'%>
+     <table>
+   <tr>
+   <th>Body</th>
+   <th>ID</th>
+   <th colspan="3">Actions</th>
+ </tr>
       <td><%=@question[:body]%> </td>
       <td><%=@question[:id]%> </td>
 
@@ -9,7 +14,7 @@
   </table>
   <br>
 </p>
-<%=link_to 'Back', link_back%>
+<%=link_back%>
 
 
 
