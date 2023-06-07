@@ -2,11 +2,11 @@ module QuestionsHelper
   
   def question_header
     
-    if params[:action] == "edit" 
+   if @question.new_record?
+      "Create New Question for Test - #{@test.title}"
+    else
       test = Test.find(@question.test_id)
       "Edit #{test.title} Question"
-    else
-      "Create New Question for Test - #{@test.title}"
     end
   end
 
@@ -16,10 +16,15 @@ module QuestionsHelper
   end
 
   def github_url(author, repo)
-   "https://github.com/#{author}/#{repo}"
+   link_to("Тест-Гуру", "https://github.com/#{author}/#{repo}")
   end
+  
 
   def link_back
-   "/tests/#{@question[:test_id]}/questions"
+    if @question.persisted?
+      link_to("Back", "/tests/#{@question[:test_id]}/questions")
+    else
+      link_to("Back", test_questions_path)
+    end
   end
 end
