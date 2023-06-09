@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
    end
 
   def new
-    @question = Question.new 
+    @question = @test.questions.new 
   end
 
   def edit
@@ -39,8 +39,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    
-    redirect_to  "/tests/#{@question[:test_id]}/questions"
+     redirect_to test_questions_path(@question.test)
   end
 
   private
