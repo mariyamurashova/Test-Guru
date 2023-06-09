@@ -1,12 +1,11 @@
 module QuestionsHelper
   
-  def question_header
+  def question_header(question)
     
-   if @question.new_record?
-      "Create New Question for Test - #{@test.title}"
+   if question.new_record?
+      "Create New Question for Test - #{question.test.title}"
     else
-      test = Test.find(@question.test_id)
-      "Edit #{test.title} Question"
+      "Edit #{question.test.title} Question"
     end
   end
 
@@ -21,10 +20,6 @@ module QuestionsHelper
   
 
   def link_back
-    if @question.persisted?
-      link_to("Back", "/tests/#{@question[:test_id]}/questions")
-    else
-      link_to("Back", test_questions_path)
-    end
+      link_to("Back", test_questions_path(@question.test))
   end
 end
