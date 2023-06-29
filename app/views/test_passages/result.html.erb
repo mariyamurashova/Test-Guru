@@ -1,0 +1,9 @@
+<h1>Test <%= @test_passage.test.title %> was completed</h1>
+
+  <% if @test_passage.success?%>
+    <h3 style= "color:green"> You've passed the test successfuly. Your result is<%= @test_passage.success_rate %> %</h3>
+  <%else%>
+    <h3 style= "color:red"> You`ve not passed the test. Your result is <%= @test_passage.success_rate %>% </h3>
+  <%end%>
+
+<%= link_to 'Back to all tests', tests_path %>

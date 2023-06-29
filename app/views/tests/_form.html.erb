@@ -1,0 +1,12 @@
+<h1><%=@test.title%></h1>
+<%= form_with(model: [@test]) do |form| %>
+<p> 
+     <%= form.label :title %><br>
+     <%= form.text_field :title, value: @test.title %><br>
+     <%= form.label :level %><br>
+     <%= form.number_field :level, value: @test.level %>
+</p>
+<p><%= form.submit %></p>
+<% end%>
+
+<%=link_to 'Back', test_path%>
