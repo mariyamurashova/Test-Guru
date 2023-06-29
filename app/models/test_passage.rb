@@ -1,3 +1,5 @@
+PERCENT_CORRECT_QUESTIONS = 85
+
 class TestPassage < ApplicationRecord
   belongs_to :user
   belongs_to :test
@@ -14,20 +16,17 @@ class TestPassage < ApplicationRecord
 
     if correct_answer?(answer_ids)
       self.correct_questions += 1
-
     end
     save!
   end
 
   def success_rate
     self.correct_questions*100/test.questions.count
-
   end
 
   def success?
-    self.success_rate>85
+    self.success_rate > PERCENT_CORRECT_QUESTIONS
   end
-
 
   def question_number
     test.questions.order(:id).where('id <= ?', current_question.id).count
@@ -37,9 +36,7 @@ class TestPassage < ApplicationRecord
     test.questions.length
   end
 
-
   private
-
 
   def before_validation_set_first_question
     self.current_question = test.questions.first if test.present?
@@ -64,5 +61,5 @@ class TestPassage < ApplicationRecord
   def before_save_set_next_question  
     self.current_question = next_question 
   end
-
+  
 end
