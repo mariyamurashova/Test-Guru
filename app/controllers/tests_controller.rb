@@ -1,7 +1,9 @@
 class TestsController < ApplicationController
 
+  before_action :authenticate_user!, only: %i[show edit update destroy start ]
   before_action :set_test, only: %i[show edit update destroy start]
   before_action :set_user, only: :start
+  
   def index
     @tests = Test.all  
   end
@@ -29,7 +31,6 @@ class TestsController < ApplicationController
   end
 
   def update
-   
     if @test.update(test_params)
       redirect_to @test
     else
@@ -38,13 +39,11 @@ class TestsController < ApplicationController
   end
 
   def destroy
-   
     @test.destroy
     redirect_to tests_path
   end
 
   def start
-    
     @user.tests.push(@test)
     redirect_to @user.test_passage(@test)
   end
@@ -56,7 +55,7 @@ class TestsController < ApplicationController
   end
 
   def set_user
-    @user = User.first
+    @user = current_user
   end
 
   def test_params
