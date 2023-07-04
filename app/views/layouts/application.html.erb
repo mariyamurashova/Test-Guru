@@ -21,6 +21,19 @@
   </head>
 
   <body>
+<div class = "nav user"><%= link_to 'Test Guru', tests_path %> </div>
+<div> New user? <%= link_to 'SignUp', signup_path %></div>
+<div> <%= link_to 'Enter', login_path %></div>
+
+    <% if logged_in? %>
+      <p class = "headers">Welcome, <b><%= current_user.name %>, </b><%= link_to 'Guru', tests_path %></p>
+       <p class = "nav user"> <%=link_to 'Logout', 
+                    session_path(session),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?'}%> 
+      </p> 
+    <% end %>
+
     <%= yield %>
     <%= render 'shared/footer'%>
   </body>
