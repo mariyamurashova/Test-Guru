@@ -1,12 +1,10 @@
 module SessionsHelper
 
   def flash_message
-
-   if flash[:alert] 
-    flash.each do |key, msg|
-      return content_tag :div, msg, :id => key, :class => 'flash alert'
-    end
-   end
+ 
+    flash.map do |key, message| 
+      content_tag :div, message, class: "flash #{key}"  
+    end.join().html_safe
   end
 
 end
