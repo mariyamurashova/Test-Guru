@@ -19,13 +19,13 @@ questions = Question.create([{body: 'Вставь пропущенную бук�
                             {body: 'Вставь пропущенную букву в слове З..МЛЯ', test_id: tests[1].id},
                             {body: 'Вставь пропущенную букву в слове Х..ЛОДНЫЙ', test_id: tests[1].id},
                             {body: 'Вставь пропущенную букву e, f,..h', test_id: tests[2].id},
-                             {body: 'Вставь пропущенную букву o, p,..r', test_id: tests[2].id},
+                            {body: 'Вставь пропущенную букву o, p,..r', test_id: tests[2].id},
                             {body: 'Как переводится слово "LANGUAGE"', test_id: tests[3].id},
                             {body: 'Как переводится слово "ANIMAL"', test_id: tests[3].id},
                             {body: 'Выбери правильную форму глагола to be во 2-ой форме прошедшего времени', test_id: tests[4].id},
-                             {body: 'Выбери правильную форму глагола to  go во 2-ой форме прошедшего времени', test_id: tests[4].id},
-                              {body: 'Выбери правильную форму глагола être с местоимением elle ', test_id: tests[5].id},
-                              {body: 'Выбери правильную форму глагола être с местоимением nous ', test_id: tests[5].id},
+                            {body: 'Выбери правильную форму глагола to  go во 2-ой форме прошедшего времени', test_id: tests[4].id},
+                            {body: 'Выбери правильную форму глагола être с местоимением elle ', test_id: tests[5].id},
+                            {body: 'Выбери правильную форму глагола être с местоимением nous ', test_id: tests[5].id},
                             ])
 
 answers = Answer.create([{body: '1. "е"', question_id: questions[0].id},
@@ -54,7 +54,7 @@ answers = Answer.create([{body: '1. "е"', question_id: questions[0].id},
                         {body: '2. "ЖИВОТНОЕ"', correct: true, question_id: questions[9].id},
                         {body: '1. was/were', correct: true, question_id: questions[10].id},
                         {body: '2. been',  question_id: questions[10].id},
-                         {body: '1. gone', question_id: questions[11].id},
+                        {body: '1. gone', question_id: questions[11].id},
                         {body: '2. went', correct: true, question_id: questions[11].id},
                         {body: '1. es', question_id: questions[12].id},
                         {body: '2. est', correct: true, question_id: questions[12].id},
@@ -62,5 +62,10 @@ answers = Answer.create([{body: '1. "е"', question_id: questions[0].id},
                         {body: '2. sommes', correct: true, question_id: questions[13].id}])
 
 users = User.create([{name: 'Иван Иванов'}, {name: 'Петр Петров'}])
+
+
+
+
+
 
 
