@@ -1,0 +1,27 @@
+<p>
+  <table>
+     <table>
+   <tr>
+   <th>Body</th>
+   <th>ID</th>
+   <th colspan="3">Actions</th>
+ </tr>
+      <td><%=@question[:body]%> </td>
+      <td><%=@question[:id]%> </td>
+
+      <%= render 'actions', resource: @question%>
+      
+  </table>
+
+  <h2>Answers</h2>
+  <%=link_to 'New answer',  new_admin_question_answer_path(@question)%>
+  <ol>
+    <%= render  @question.answers %>
+  </ol>
+  <br>
+</p>
+<%= link_to 'Edit', edit_admin_question_path(@question) %>
+<%= link_to 'Back', admin_test_path(@question.test) %>
+
+
+
