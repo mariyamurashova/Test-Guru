@@ -7,7 +7,7 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def show
-   redirect_to admin_test_questions_path(@test)
+ 
   end
 
   def new
@@ -19,10 +19,9 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def create
-    
+
     @test = Test.new(test_params)
     @test.author_id = current_user.id
-
     if @test.save
       redirect_to [:admin, @test]
     else
