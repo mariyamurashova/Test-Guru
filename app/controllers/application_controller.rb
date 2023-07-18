@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   before_action :configure_sign_up_params, only: [:create], if: :devise_controller?
 
   def after_sign_in_path_for(user)
-byebug
+
     if user.admin? 
-     admin_tests_path
+      admin_root_path
     else
-      flash.notice = "Привет,#{user.first_name}"       
-      root_path
+     flash.notice = "Привет,#{user.first_name}"       
+     user_root_path
     end
 
   end
