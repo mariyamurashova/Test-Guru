@@ -12,8 +12,6 @@ class User < ApplicationRecord
   has_many :test_passages
   has_many :tests, through: :test_passages
 
-  #has_secure_password
-
   validates :email, uniqueness: true, format:  {with: URI::MailTo::EMAIL_REGEXP}
   validates :first_name, :last_name, presence: true
 
