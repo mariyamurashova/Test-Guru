@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
   root 'tests#index'
 
+  get '/tests' => 'tests#index', as: :user_root
+
+  namespace :admin do 
+     get '/tests' => 'tests#index', as: :root
+  end
+
   devise_for :users, path: :gurus, path_names: { sign_in: :login, sign_out: :logout }
 
   resources :tests, only: :index do 
