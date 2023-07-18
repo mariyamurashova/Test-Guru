@@ -4,6 +4,7 @@ class Admin::AnswersController < Admin::BaseController
   before_action :set_answer, only: %i[ edit update destroy show]
 
   def show
+    
   end
 
   def new
@@ -23,7 +24,7 @@ class Admin::AnswersController < Admin::BaseController
       render :new 
     end
 
-    end
+  end
 
   def update
    if @answer.update(answer_params)
