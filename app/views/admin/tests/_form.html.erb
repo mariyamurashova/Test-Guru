@@ -16,13 +16,6 @@
      <%= form.collection_select  :category_id, Category.all, :id, :title, prompt: true, value: @test.category_id %><br>
   </p>
 
-  <p> 
-     <%= form.label :author_id %><br>
-     <%= form.text_field  :author_name, value: current_user.first_name %><br>
-     <%= form.hidden_field :author_id, value: current_user.id %>
-  </p>
-
-
   <p><%= form.submit %></p>
 <% end%>
 
