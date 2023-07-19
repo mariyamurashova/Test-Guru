@@ -1,0 +1,11 @@
+<h1><%= question_header(@question) %></h1>
+<%= form_with model: [:admin, @test, @question] do |form| %>
+
+  <p> 
+    <%= form.label :body %><br>
+    <%= form.text_field :body, value: @question.body %>
+  </p>
+
+  <p><%= form.submit %></p>
+  
+<% end%>

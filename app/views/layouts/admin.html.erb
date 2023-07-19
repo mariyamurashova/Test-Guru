@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TestGuru</title>
+    <title>Admin Panel</title>
     <style type="text/css">
    #footer {
     position: fixed; /* Фиксированное положение */
@@ -23,12 +23,13 @@
   <body>
     <% if user_signed_in? %>
       <p class = "headers">
-        Welcome, <b><%= current_user.email %>, </b><%= link_to 'Guru', tests_path %> |
+        Welcome, <b><%= current_user.first_name %>, </b><%= link_to 'Guru', admin_tests_path %> |
         <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
       </p> 
     <% end %>
 
     <%= render 'shared/flash' %>
+    <%= render 'admin/nav' %>
 
     <%= yield %>
     <%= render 'shared/footer'%>
