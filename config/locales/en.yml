@@ -1,33 +1,70 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
+
+  helpers:
+    select:
+      prompt: "Please select"
+    submit:
+      test:
+        create: "Create Test"
+        update: "Update Test"
+    label:
+      test:
+        title: "Title"
+        level: "Level"
+        category_id: "Category"
+
+  shared:
+    errors:
+      header:
+        one: "%{count} error detected"
+        other: "%{count} errors detected"
+
+  tests:
+    index:
+      header: "Tricky tests"
+      title: "Title"
+      level: "Level"
+      question_amount: "Questions amount"
+    test:
+      start: "Start"
+
+  test_passages:
+    result:
+      header: "The %{title} Test was Completed!"
+      passed_test: "You've passed the test successfuly. Your result is %{result}"
+      not_passed_test: "You've not passed the test. Your result is %{result}"
+      all_tests: "Back to all tests"
+    show:
+      header: "Вы проходите тест: %{title}"
+      question: "Вопрос %{number} из %{amount}"
+      next: "Next question"
+
+  layouts:
+    application:
+      welcome: "Welcome, %{user}"
+      logout: "Выход"
+
+  admin:
+    tests:
+      new: 
+        header: "Create new test"
+      form:
+        back: "Back"
+      create:
+        success: "Test was successfully created."
+      index:
+        header: "Tricky tests"
+        new_test: "New test"
+        itle: "Title"
+        level: "Level"
+        question_amount: "Questions amount"
+        actions: "Actions"
+      actions:  
+        show: "Show"
+        edit: "Edit"
+        delete: "Delete" 
+
+  tests_mailer:
+    completed_test:
+      subject: "You just completed the TestGuru test"
