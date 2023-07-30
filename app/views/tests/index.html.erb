@@ -1,10 +1,10 @@
-<div class = "nav headers"><h1>Tests:</h1></div>
+<h1><%= t('tests.index.header') %></h1>
 
   <table>
     <tr>
-   <th>Title</th>
-   <th>Level</th>
-   <th>Questions amount</th>
+   <th><%= t('tests.index.title') %></th>
+   <th><%= t('tests.index.level') %></th>
+   <th><%= t('tests.index.question_amount') %></th>
  </tr>
 
     <%= render @tests %>     
