@@ -1,6 +1,8 @@
-<div class="container p-10">
+<div class="container">
   <div class="container">
+    <div class="d-flex justify-content-center">
     <h1><%= t('.header') %></h1>
+  </div>
   </div>
 
   <div class="container">
@@ -9,18 +11,19 @@
     </p>
   </div>
 
-  <div class="container">      
-    <table class="table table-bordered  table-striped table-hover ">
-      <thead class="table-primary ">
-      <tr>
-        <th><%= t('.title') %></th>
-        <th><%= t('.level') %></th>
-        <th><%= t('.question_amount') %></th>
-        <th colspan="4"><%= t('.actions') %></th>
-      </tr>
-      </thead> 
-      <%= render @tests %>      
-    </table>
+  <div class="container">  
+    <div class="d-flex align-items-start">    
+      <table class="table table-bordered  table-striped table-hover ">
+        <thead class="table-primary ">
+        <tr>
+          <th><%= t('.title') %></th>
+          <th><%= t('.level') %></th>
+          <th><%= t('.question_amount') %></th>
+          <th colspan="4"><%= t('.actions') %></th>
+        </tr>
+        </thead> 
+        <%= render @tests %>      
+      </table>
+   </div>
   </div>
-
 </div>  
