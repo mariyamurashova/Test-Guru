@@ -21,13 +21,20 @@ ru:
         many: "Обнаружено %{count} ошибок"
         one: "Обнаружена %{count} ошибка"
         other: "Обнаружено %{count} ошибки"
+    nav:
+      welcome: "Добро пожаловать, %{user}"
+      logout: "Выход"
+      log_in: "Вход"
+      sign_up: "Регистрация"
 
   tests:
     index:
       header: "Доступные тесты"
       title: "Название"
       level: "Уровень"
+      start: "Начать тестирование"
       question_amount: "Количество вопросов"
+      admin_direct: "Управление контентом"
     test:
       start: "Старт"
 
@@ -41,13 +48,10 @@ ru:
       header: "Вы проходите тест: %{title}"
       question: "Вопрос %{number} из %{amount}"
       next: "Следующий вопрос"
-
-  layouts:
-    application:
-      welcome: "Добро пожаловать, %{user}"
-      logout: "Выход"
-
+      
   admin:
+    nav: 
+      welcome: "Добро пожаловать, %{user}"
     tests:
       new: 
         header: "Создать новый тест"
