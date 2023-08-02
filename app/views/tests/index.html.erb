@@ -1,5 +1,7 @@
   <div class="container">
-    <h1><%= t('tests.index.header') %></h1>
+    <div class="d-flex justify-content-center">    
+      <h1><%= t('tests.index.header') %></h1>
+    </div>
   </div>
 
   <%if current_user && current_user.admin? %>
@@ -11,19 +13,19 @@
   <%end%>
   
   <div class="container">
-    <table class="table table-bordered border-primary-subtle table-striped table-hover">
-       <thead class="table-primary">
-      <tr>
-        <th><%= t('tests.index.title') %></th>
-        <th><%= t('tests.index.level') %></th>
-        <th><%= t('tests.index.question_amount') %></th>
-        <th><%= t('.start') %></th>
-      </tr>
-       </thead>
-       <tbody>
-        <%= render @tests %>     
-       </tbody>
-    </table>
+    <div class="d-flex align-items-start">  
+      <table class="table table-bordered border-primary-subtle table-striped table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th><%= t('tests.index.title') %></th>
+            <th><%= t('tests.index.level') %></th>
+            <th><%= t('tests.index.question_amount') %></th>
+            <th><%= t('.start') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @tests %>     
+        </tbody>
+      </table>
+    </div>
   </div>
-
-
