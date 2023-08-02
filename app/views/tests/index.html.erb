@@ -1,11 +1,29 @@
-<h1><%= t('tests.index.header') %></h1>
+  <div class="container">
+    <h1><%= t('tests.index.header') %></h1>
+  </div>
 
-  <table>
-    <tr>
-   <th><%= t('tests.index.title') %></th>
-   <th><%= t('tests.index.level') %></th>
-   <th><%= t('tests.index.question_amount') %></th>
- </tr>
+  <%if current_user && current_user.admin? %>
+    <div class="container">
+      <p>
+       <a href="admin/tests" class="btn btn-primary" role="button"><%= t('.admin_direct') %></a>
+      </p>
+    </div>
+  <%end%>
+  
+  <div class="container">
+    <table class="table table-bordered border-primary-subtle table-striped table-hover">
+       <thead class="table-primary">
+      <tr>
+        <th><%= t('tests.index.title') %></th>
+        <th><%= t('tests.index.level') %></th>
+        <th><%= t('tests.index.question_amount') %></th>
+        <th><%= t('.start') %></th>
+      </tr>
+       </thead>
+       <tbody>
+        <%= render @tests %>     
+       </tbody>
+    </table>
+  </div>
 
-    <%= render @tests %>     
-</table>
+
