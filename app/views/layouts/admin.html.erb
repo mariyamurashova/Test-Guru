@@ -21,17 +21,13 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <p class = "headers">
-        Welcome, <b><%= current_user.first_name %>, </b><%= link_to 'Guru', admin_tests_path %> |
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-      </p> 
-    <% end %>
 
-    <%= render 'shared/flash' %>
     <%= render 'admin/nav' %>
 
-    <%= yield %>
+    <%= render 'shared/flash' %>
+      <%= yield %>
+
     <%= render 'shared/footer'%>
+
   </body>
 </html>

@@ -13,7 +13,6 @@ ru:
   devise:
     shared:
       links:
-        log_in: "Войти"
         confirmation_instructions: "Не получили письмо для подтверждения?"
         forgot_password: "Забыли пароль?"
         sign_up: "Регистрация"
@@ -65,6 +64,7 @@ ru:
     sessions:
       new:
         log_in: "Вход"
+        remember_me: "Запомнить"
       signed_in: "Вход в систему выполнен."
       signed_out: "Выход из системы выполнен."
       already_signed_out: "Выход из системы выполнен."

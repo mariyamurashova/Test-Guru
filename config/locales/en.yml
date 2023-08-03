@@ -19,13 +19,18 @@ en:
       header:
         one: "%{count} error detected"
         other: "%{count} errors detected"
+    nav:
+      welcome: "Welcome, %{user}"
+      logout: "Выход"
 
   tests:
     index:
       header: "Tricky tests"
       title: "Title"
       level: "Level"
+      start: "Start testing"
       question_amount: "Questions amount"
+      admin_direct: "Сontent management"
     test:
       start: "Start"
 
@@ -36,16 +41,13 @@ en:
       not_passed_test: "You've not passed the test. Your result is %{result}"
       all_tests: "Back to all tests"
     show:
-      header: "Вы проходите тест: %{title}"
-      question: "Вопрос %{number} из %{amount}"
+      header: "You are taking the test: %{title}"
+      question: "Question %{number} from %{amount}"
       next: "Next question"
 
-  layouts:
-    application:
-      welcome: "Welcome, %{user}"
-      logout: "Выход"
-
   admin:
+    nav: 
+      welcome: "Welcome, %{user}"
     tests:
       new: 
         header: "Create new test"
