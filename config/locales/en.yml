@@ -44,6 +44,10 @@ en:
       header: "You are taking the test: %{title}"
       question: "Question %{number} from %{amount}"
       next: "Next question"
+    gist:
+      success: "Gist was successfully created! View on Github click"
+      failure: "An error occurred while saving gist"
+      link: "here"
 
   admin:
     nav: 
@@ -62,10 +66,17 @@ en:
         level: "Level"
         question_amount: "Questions amount"
         actions: "Actions"
+        gists_table: "Gist's Table "
       actions:  
         show: "Show"
         edit: "Edit"
         delete: "Delete" 
+    gists:
+      show:
+        user_email: "User"
+        question: "Question"
+        view: "View on GitHub"
+
 
   tests_mailer:
     completed_test:
