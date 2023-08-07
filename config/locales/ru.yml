@@ -48,11 +48,13 @@ ru:
       header: "Вы проходите тест: %{title}"
       question: "Вопрос %{number} из %{amount}"
       next: "Следующий вопрос"
-    gist:
+
+  gists:
+    create:
       success: "Gist успешно сохранен! Чтобы просмотреть на GitHub нажмите"
       failure: "Во время сохранения Gist произошла ошибка!"
       link: "здесь"
-      
+
   admin:
     nav: 
       welcome: "Добро пожаловать, %{user}"
