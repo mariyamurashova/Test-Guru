@@ -20,14 +20,14 @@ Rails.application.routes.draw do
   end
 
   resources :test_passages do
+    resources :gists, only: %i[create]
     member  do
       get :result
-      post :gist
     end
   end
 
   namespace :admin do    
-    resources :gists, only: %i[show]
+    resources :gists, only: %i[index]
     resources :tests do
       resources :questions, shallow: true  do 
        resources :answers, shallow: true
