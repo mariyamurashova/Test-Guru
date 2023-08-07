@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     member  do
       post :start
     end
-end
+  end
 
   resources :test_passages do
     member  do
@@ -26,8 +26,8 @@ end
     end
   end
 
-  namespace :admin do 
-    get '/gists' => 'gists#show'
+  namespace :admin do    
+    resources :gists, only: %i[show]
     resources :tests do
       resources :questions, shallow: true  do 
        resources :answers, shallow: true
