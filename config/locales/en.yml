@@ -44,7 +44,9 @@ en:
       header: "You are taking the test: %{title}"
       question: "Question %{number} from %{amount}"
       next: "Next question"
-    gist:
+
+  gists:
+    create:
       success: "Gist was successfully created! View on Github click"
       failure: "An error occurred while saving gist"
       link: "here"
