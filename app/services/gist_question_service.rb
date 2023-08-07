@@ -1,3 +1,5 @@
+RESPONSE_STATUS = 201
+
 class GistQuestionService
 
   def initialize(question, client: nil)
@@ -11,7 +13,7 @@ class GistQuestionService
   end
 
   def success?
-    @client.last_response.status == 201
+    @client.last_response.status == RESPONSE_STATUS
   end
 
   private
