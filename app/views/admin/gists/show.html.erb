@@ -1,0 +1,22 @@
+  <div class="container">
+    <div class="d-flex justify-content-center">    
+      <h1></h1>
+    </div>
+  </div>
+
+   <div class="container">
+    <div class="d-flex align-items-start">  
+      <table class="table table-bordered border-primary-subtle table-striped table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th><%= t('.user_email') %></th>
+            <th><%= t('.question') %> </th>
+            <th><%= t('.view') %></th>
+          </tr>
+        </thead>
+        <tbody>
+            <%= render @gists %>  
+        </tbody>
+      </table>
+    </div>
+  </div>

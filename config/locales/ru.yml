@@ -48,7 +48,13 @@ ru:
       header: "Вы проходите тест: %{title}"
       question: "Вопрос %{number} из %{amount}"
       next: "Следующий вопрос"
-      
+
+  gists:
+    create:
+      success: "Gist успешно сохранен! Чтобы просмотреть на GitHub нажмите"
+      failure: "Во время сохранения Gist произошла ошибка!"
+      link: "здесь"
+
   admin:
     nav: 
       welcome: "Добро пожаловать, %{user}"
@@ -66,10 +72,16 @@ ru:
         level: "Уровень"
         question_amount: "Количество вопросов"
         actions: "Действия"
+        gists_table: "Таблица Gists"
       actions:  
         show: "Просмотреть"
         edit: "Редактировать"
         delete: "Удалить"
+    gists:
+      show:
+        user_email: "Пользователь"
+        question: "Вопрос"
+        view: "Посмотреть на GitHub"
 
   tests_mailer:
     completed_test:

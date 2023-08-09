@@ -17,15 +17,17 @@ Rails.application.routes.draw do
     member  do
       post :start
     end
-end
+  end
 
   resources :test_passages do
+    resources :gists, only: %i[create]
     member  do
       get :result
     end
   end
 
-  namespace :admin do 
+  namespace :admin do    
+    resources :gists, only: %i[index]
     resources :tests do
       resources :questions, shallow: true  do 
        resources :answers, shallow: true
