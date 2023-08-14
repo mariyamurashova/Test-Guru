@@ -8,7 +8,6 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "bootstrap-sprockets"
 import "packs/utilities/sorting" 
 import "packs/utilities/check_password" 
 
