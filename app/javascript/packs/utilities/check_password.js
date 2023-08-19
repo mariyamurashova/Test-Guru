@@ -1,6 +1,6 @@
 document.addEventListener('turbolinks:load', function() {
  var userPassword
-
+if (userPassword){
 document.getElementById('user_password').addEventListener("input", function (e) {
   userPassword = e.target.value 
 
@@ -11,7 +11,8 @@ if (e.target.value == '') {return(document.querySelector('.octicon-alert').class
 comparePasswords (e.target.value)
     })
   })
-
+  }
+})
 function comparePasswords(passwordConfirmation){
   
   if (userPassword == passwordConfirmation) {
@@ -23,4 +24,4 @@ function comparePasswords(passwordConfirmation){
     document.querySelector('.octicon-check').classList.add('hide')
     }
   }
-})
+
