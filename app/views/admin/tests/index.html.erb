@@ -11,7 +11,8 @@
       <a class="btn btn-primary" href="gists" role="button"><%= t('.gists_table')%></a>
     </p>
   </div>
-
+  <%= render 'shared/errors', resource: @test %>
+  
   <div class="container">  
     <div class="d-flex align-items-start">    
       <table class="table table-bordered  table-striped table-hover ">
