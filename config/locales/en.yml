@@ -69,6 +69,8 @@ en:
         question_amount: "Questions amount"
         actions: "Actions"
         gists_table: "Gist's Table "
+      form_inline:
+        submit: "OK"
       actions:  
         show: "Show"
         edit: "Edit"
