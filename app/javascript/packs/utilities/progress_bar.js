@@ -6,7 +6,7 @@ document.addEventListener('turbolinks:load', function() {
     var questionsAmount = Number(progressBar.dataset.questionsAmount)
     var countProgress = (questionNumber / questionsAmount)*100
    
-     $('.progress-bar').css('width', countProgress+'%').attr('aria-valuenow', countProgress);  
+     progressBar.style.width = countProgress +'%'
   }
-
+  
 })
