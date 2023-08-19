@@ -8,9 +8,11 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "jquery"
 import "packs/utilities/sorting" 
 import "packs/utilities/check_password" 
-
+import "packs/utilities/form_inline" 
+import "packs/utilities/progress_bar" 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
