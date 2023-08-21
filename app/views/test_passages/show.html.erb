@@ -1,20 +1,26 @@
 <h1><%= t('.header', title: @test_passage.test.title)%></h1>
 <h3><%= t('.question', number: @test_passage.question_number, amount: @test_passage.questions_amount) %> </h1>
+
+<div class="progress progress-striped active">
+  <div class="progress-bar" role="progressbar" data-question-number="<%=@test_passage.question_number %>" data-questions-amount="<%=@test_passage.questions_amount %>" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" >
+  </div>
+</div>
+
 <p>
-    <%= @test_passage.current_question.body %>
+  <%= @test_passage.current_question.body %>
 </p>
 
 <%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
-    <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
+  <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
     <p>
-        <%=b.check_box id: "answer_ids_#{b.object.id}" %>
-        <%= b.label %>
+      <%=b.check_box id: "answer_ids_#{b.object.id}" %>
+      <%= b.label %>
     </p>
-    <%end%>
+  <%end%>
     
-    <p><%= link_to 'Gist Question', test_passage_gists_path(@test_passage), method: :post %></p>
+  <p><%= link_to 'Gist Question', test_passage_gists_path(@test_passage), method: :post %></p>
     
- <p><%= form.submit t('.next')%></p>
+ <p><%= form.submit t('.next'), class: 'next-question'%></p>
 <%end%>
 
    

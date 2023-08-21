@@ -73,6 +73,8 @@ ru:
         question_amount: "Количество вопросов"
         actions: "Действия"
         gists_table: "Таблица Gists"
+      form_inline:
+        submit: "OK"
       actions:  
         show: "Просмотреть"
         edit: "Редактировать"

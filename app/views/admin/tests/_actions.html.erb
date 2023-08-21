@@ -1,6 +1,10 @@
 <td> <%= link_to t('.show'), admin_question_path(resource) %> </td>
 
-<td> <%= link_to t('.edit'), edit_admin_question_path(resource) %> </td>
+<td> <%= link_to t('.edit'), 
+                 edit_admin_test_path(resource),
+                 data: { test_id: resource.id}, 
+                 class: 'form-inline-link' %> 
+</td>
 
  <td> <%= link_to t('.delete'), admin_question_path(resource),
                          method: :delete, 
