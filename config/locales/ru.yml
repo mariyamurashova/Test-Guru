@@ -55,6 +55,10 @@ ru:
       failure: "Во время сохранения Gist произошла ошибка!"
       link: "здесь"
 
+  contacts:
+    create:
+      success: "Ваще сообщение было успешно отправлено"
+
   admin:
     nav: 
       welcome: "Добро пожаловать, %{user}"
