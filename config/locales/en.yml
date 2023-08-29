@@ -51,6 +51,10 @@ en:
       failure: "An error occurred while saving gist"
       link: "here"
 
+  contacts:
+    create:
+      success: "Your message was succesfully delivered"
+
   admin:
     nav: 
       welcome: "Welcome, %{user}"
@@ -85,3 +89,5 @@ en:
   tests_mailer:
     completed_test:
       subject: "You just completed the TestGuru test"
+
+
