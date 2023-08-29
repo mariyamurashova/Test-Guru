@@ -36,5 +36,6 @@ Rails.application.routes.draw do
       end
     end
   end
-    
+
+  resources :contacts, only: %i[new create] 
 end
