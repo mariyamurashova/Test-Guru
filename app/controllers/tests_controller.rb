@@ -8,8 +8,12 @@ class TestsController < ApplicationController
   end
 
   def start
-    current_user.tests.push(@test)
-    redirect_to current_user.test_passage(@test)
+    if @test.questions.presence
+      current_user.tests.push(@test)
+      redirect_to current_user.test_passage(@test)
+    else
+      redirect_to root_path, notice: "Test hasn't questions at the moment"
+    end
   end
 
   private
