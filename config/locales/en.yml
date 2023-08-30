@@ -35,6 +35,8 @@ en:
       start: "Start"
 
   test_passages:
+    update:
+      give_answer: "You should give the answer!"
     result:
       header: "The %{title} Test was Completed!"
       passed_test: "You've passed the test successfuly. Your result is %{result}"
