@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Contact Form</h1>
-  <%= form_for @contact  do |f| %>
+  <%= form_with url: contacts_path do |f| %>
     <div class="col-md-6">
       <%= f.label :name %></br>
       <%= f.text_field  :name, required: true, class: "contact-form-text-area" %></br>
