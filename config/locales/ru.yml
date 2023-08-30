@@ -39,6 +39,8 @@ ru:
       start: "Старт"
 
   test_passages:
+    update:
+      give_answer: "Необходимо выбрать ответ!"
     result:
       header: "Тест %{title} успешно завершен!"
       passed_test: "Вы успешно завершили тест. Ваш результат: %{result}"
