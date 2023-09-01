@@ -10,30 +10,27 @@ class TestPassagesController < ApplicationController
   end
     
   def update
-
-    if params[:answer_ids]!=nil
-      @test_passage.accept!(params[:answer_ids])
-        if @test_passage.completed?
-          TestsMailer.completed_test(@test_passage).deliver_now
-          redirect_to result_test_passage_path(@test_passage)
-        else
-          render :show
-        end
+    flash.delete(:notice)
+    @test_passage.accept!(params[:answer_ids])
+    show_errors
+    if @test_passage.completed?
+      TestsMailer.completed_test(@test_passage).deliver_now
+      redirect_to result_test_passage_path(@test_passage)
     else
-      redirect_to test_passage_path, notice: t('.give_answer')
+      render :show
     end
- 
   end
 
   private
 
-  def set_test_passage
-    @test_passage = TestPassage.find(params[:id])
+  def show_errors
+    if @test_passage.errors.any?
+      flash[:notice] = @test_passage.errors.full_messages[0]
+    end
   end
 
-  def get_answer?
-    if params[:answer_ids]!=nil
-    end
+  def set_test_passage
+    @test_passage = TestPassage.find(params[:id])
   end
 
 end
