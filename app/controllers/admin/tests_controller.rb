@@ -7,7 +7,6 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def show
- 
   end
 
   def new
@@ -66,7 +65,7 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def test_params
-     params.require(:test).permit(:title, :level, :category_id)
+     params.require(:test).permit(:title, :level, :category_id, :redy_for_publication)
   end
   
 end

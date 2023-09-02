@@ -1,8 +1,9 @@
 class Test < ApplicationRecord
+  
   belongs_to :category
   belongs_to :author, class_name: "User", foreign_key: :author_id
-  has_many :questions
-  has_many :test_passages
+  has_many :test_passages, dependent: :destroy
+  has_many :questions, dependent: :destroy  
   has_many :users, through: :test_passages
 
   validates :title, uniqueness: { scope: :level } 
@@ -10,6 +11,7 @@ class Test < ApplicationRecord
   validates :title, presence: true
 
   scope :join_category, -> (category) { joins(:category).where(categories: {title: category})}
+  scope :published, -> { where(redy_for_publication: true) }
  
   scope :easy, -> { where(level: 0..1) }
   scope :mmiddle, -> { where(level: 2..4) }

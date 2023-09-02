@@ -17,6 +17,11 @@
      <%= form.collection_select  :category_id, Category.all, :id, :title, prompt: true, value: @test.category_id %><br>
   </p>
 
+  <p> 
+     <%= form.label :redy_for_publication %>
+     <%= form.check_box  :redy_for_publication, {checked: true}, value: @test.redy_for_publication %><br>
+  </p>
+
   <p><%= form.submit %></p>
 <% end%>
 

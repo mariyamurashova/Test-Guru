@@ -39,6 +39,8 @@ ru:
       start: "Старт"
 
   test_passages:
+    update:
+      give_answer: "Необходимо выбрать ответ!"
     result:
       header: "Тест %{title} успешно завершен!"
       passed_test: "Вы успешно завершили тест. Ваш результат: %{result}"
@@ -54,6 +56,10 @@ ru:
       success: "Gist успешно сохранен! Чтобы просмотреть на GitHub нажмите"
       failure: "Во время сохранения Gist произошла ошибка!"
       link: "здесь"
+
+  contacts:
+    create:
+      success: "Ваще сообщение было успешно отправлено"
 
   admin:
     nav: 
