@@ -11,6 +11,7 @@ class Test < ApplicationRecord
   validates :title, presence: true
 
   scope :join_category, -> (category) { joins(:category).where(categories: {title: category})}
+  scope :published, -> { where(redy_for_publication: true) }
  
   scope :easy, -> { where(level: 0..1) }
   scope :mmiddle, -> { where(level: 2..4) }
