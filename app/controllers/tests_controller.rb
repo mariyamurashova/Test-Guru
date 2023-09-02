@@ -4,7 +4,7 @@ class TestsController < ApplicationController
   before_action :set_test, only: %i[ start ]
 
   def index
-    @tests = Test.where("redy_for_publication=true")
+    @tests = Test.published
     
   end
 
