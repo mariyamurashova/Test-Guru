@@ -1,14 +1,18 @@
 <nav class="navbar navbar-light bg-light">
-  <%= link_to 'TestGuru', root_path, class: 'navbar-brand' %>
+  <%= link_to 'TestGuru', root_path %>
 
-  <span class="navbar-text">
     <% if user_signed_in? %>
-       <b><%= t('.welcome', user: current_user.email) %> | </b>
-        <%= link_to t('.logout'), destroy_user_session_path, method: :delete %>
+      <%= link_to 'The list of awards', badges_path %>
+      
+      <span class="navbar-text">
+       <%= t('.welcome', user: current_user.email) %> | 
+       <%= link_to t('.logout'), destroy_user_session_path, method: :delete, class: 'navbar-brand' %><br>
+       <%= link_to "Contact Us",  new_contact_path %>    
     <% else %>
+      <span class="navbar-text">
       <%= link_to t('.log_in'), new_session_path(:user) %> |
       <%= link_to t('.sign_up'), new_registration_path(:user) %> 
    <% end %>
-   <b><%= link_to "Contact Us",  new_contact_path %></b>
-   </span>
+    </span>
+    </span>
 </nav>
