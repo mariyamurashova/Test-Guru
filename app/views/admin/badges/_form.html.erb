@@ -1,0 +1,21 @@
+<h1><%=@badge.title%></h1>
+
+<%= form_with(model:[:admin, @badge]) do |form| %>
+  <%= render 'shared/errors', resource: @badge %>
+  <p> 
+    <%= form.label :title %><br>
+    <%= form.text_field :title, value: @badge.title %><br>
+  </p>
+
+  <p> 
+    <%= form.label :image %><br>
+    <% if @badge.image.presence %>
+      <%= image_tag @badge.image %><br>
+    <%end%>
+   <%= form.file_field :image %>
+  </p>
+
+  <p><%= form.submit %></p>
+  <% end%>
+
+<%=link_to t('.back'), admin_badges_path%>
