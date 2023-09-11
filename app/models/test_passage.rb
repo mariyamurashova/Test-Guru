@@ -14,14 +14,18 @@ class TestPassage < ApplicationRecord
   end
 
   def accept!(answer_ids)
+
     return errors.add(:base, :invalid, message: "You should give the answer") if answer_ids.nil?  
 
     if  correct_answer?(answer_ids)
       self.correct_questions += 1
     end
+
+    add_result_success
+   
     save!
+  
   end
- 
 
   def success_rate
     self.correct_questions*100/test.questions.count
@@ -30,6 +34,11 @@ class TestPassage < ApplicationRecord
   def success?
     self.success_rate > PERCENT_CORRECT_QUESTIONS
   end
+
+  def add_result_success
+    self.result_success = true if self.success? 
+  end
+
 
   def question_number
     test.questions.order(:id).where('id <= ?', current_question.id).count
