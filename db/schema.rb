@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_08_081727) do
+ActiveRecord::Schema.define(version: 2023_09_13_070045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,18 +52,23 @@ ActiveRecord::Schema.define(version: 2023_09_08_081727) do
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
+  create_table "awordings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["badge_id"], name: "index_awordings_on_badge_id"
+    t.index ["user_id"], name: "index_awordings_on_user_id"
+  end
+
   create_table "badges", force: :cascade do |t|
     t.string "title", null: false
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "badges_users", id: false, force: :cascade do |t|
-    t.bigint "badge_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["badge_id", "user_id"], name: "index_badges_users_on_badge_id_and_user_id"
-    t.index ["user_id", "badge_id"], name: "index_badges_users_on_user_id_and_badge_id"
+    t.string "rule_category"
+    t.integer "rule_level"
+    t.boolean "active", default: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -146,6 +151,8 @@ ActiveRecord::Schema.define(version: 2023_09_08_081727) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
+  add_foreign_key "awordings", "badges"
+  add_foreign_key "awordings", "users"
   add_foreign_key "gists", "questions"
   add_foreign_key "gists", "users"
   add_foreign_key "questions", "tests"
