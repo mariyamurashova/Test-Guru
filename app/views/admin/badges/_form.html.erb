@@ -15,6 +15,49 @@
    <%= form.file_field :image %>
   </p>
 
+   <p> 
+     <legend>Выберите правило, по которуму будет выдаваться Бейдж</legend>
+    <div >
+      <label>
+        <input type="checkbox" class="rule1"/>
+       1. За успешное прохождение всех тестов определенной категории
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" class="rule2"/>
+        2. За успешное прохождение всех тестов определеннго уровня
+      </label>
+    </div>
+    <div >
+      <label>
+        <input type="checkbox" class="rule3"/>
+        3. За успешное прохождение теста с первой попытки.
+      </label>
+    </div>
+  </p>
+
+ 
+   <p> 
+    <div class='select-category hide'>
+     <%= form.label "Выберите категорию" %><br>
+     <%= form.collection_select  :rule_category, Category.all, :title, :title, {:prompt => "Select category"}, value: :rule_category %><br>
+   </div>
+  </p>
+
+   <p> 
+    <div class='select-level hide'>
+      <%= form.label "Выберите уровень" %><br>
+     <%= form.collection_select  :rule_level, Test.select(:level).distinct, :level, :level, {:prompt => "Select level"}, value: :rule_level %><br>
+   </div>
+  </p>
+
+    <p> 
+     <%= form.label :active %>
+     <%= form.check_box  :active, {checked: true}, value: :active %><br>
+  </p>
+
+
   <p><%= form.submit %></p>
   <% end%>
 
