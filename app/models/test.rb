@@ -11,7 +11,7 @@ class Test < ApplicationRecord
   validates :title, presence: true
 
   scope :join_category, -> (category) { joins(:category).where(categories: {title: category})}
-  scope :count_tests_with_level, -> (level) { where(level: level).count}
+  scope :count_tests_with_level, -> (level) { where(level: level)}
   scope :published, -> { where(redy_for_publication: true) }
  
   scope :easy, -> { where(level: 0..1) }
