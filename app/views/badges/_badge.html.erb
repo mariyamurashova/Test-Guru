@@ -1,3 +1,15 @@
+<% if badge.active?%>
 <h4><u><%=badge.title%></u><h4>
   
 <%= image_tag badge.image %>
+
+<% if badge.rule_category != nil%>
+  <h5>Выдается за успешное прохождение всеx тестов категории: <%=badge.rule_category%></h5>
+<% else %>
+  <% if badge.rule_level != nil %>
+    <h5>Выдается за успешное прохождение всеx тестов уровня: <%=badge.rule_level%></h5>
+  <% else %>
+    <h5>Выдается за успешное прохождение теста с первой попытки.</h5>
+  <% end %>
+<%end%>
+<% end %> 
