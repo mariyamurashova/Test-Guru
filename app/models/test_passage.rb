@@ -8,6 +8,9 @@ class TestPassage < ApplicationRecord
 
   before_validation :before_validation_set_first_question, on: :create
   before_validation :before_validation_set_next_question, on: :update
+  before_save :before_save_add_result_success
+
+  scope :with_result_success, -> (user) { where(user_id: user.id).where(result_success: true)}
 
   def completed?
     current_question.nil?
@@ -21,10 +24,7 @@ class TestPassage < ApplicationRecord
       self.correct_questions += 1
     end
 
-    add_result_success
-   
     save!
-  
   end
 
   def success_rate
@@ -35,11 +35,6 @@ class TestPassage < ApplicationRecord
     self.success_rate > PERCENT_CORRECT_QUESTIONS
   end
 
-  def add_result_success
-    self.result_success = true if self.success? 
-  end
-
-
   def question_number
     test.questions.order(:id).where('id <= ?', current_question.id).count
   end
@@ -49,6 +44,11 @@ class TestPassage < ApplicationRecord
   end
 
   private
+
+   def before_save_add_result_success
+    self.result_success = true if self.success?
+  end
+
 
   def before_validation_set_first_question
     self.current_question = test.questions.first if test.present?
