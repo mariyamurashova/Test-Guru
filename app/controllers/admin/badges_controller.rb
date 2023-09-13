@@ -1,6 +1,6 @@
 class Admin:: BadgesController < Admin::BaseController
   before_action :authenticate_user! 
-  before_action :set_badge, only: %i[ show edit update destroy ]
+  before_action :set_badge, only: %i[ update destroy ]
 
 
   def index
@@ -24,6 +24,8 @@ class Admin:: BadgesController < Admin::BaseController
   end
 
   def update
+    @badge.rule_category = nil if params[:rule_category]==nil 
+    @badge.rule_level = nil if params[:rule_level]==nil 
     if @badge.update(badge_params)
       redirect_to [:admin, @badge]
     else
@@ -43,7 +45,8 @@ private
   end
 
   def badge_params
-     params.require(:badge).permit(:title, :image )
+    
+     params.require(:badge).permit(:title, :image, :rule_category, :rule_level, :active)
   end
 
 end
