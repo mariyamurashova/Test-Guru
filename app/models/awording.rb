@@ -11,12 +11,12 @@ class Awording < ApplicationRecord
   end
 
   def pass_success_first_attempt(test_passage)
-    add_badge_to_user(@first_attempt_badge) if self.user.tests.where(id: test_passage.test_id).count == 1
+    add_badge_to_user(@first_attempt_badge) if TestPassage.where(user_id: self.user.id, test_id: test_passage.test_id).count == 1
   end
 
   def pass_success_tests_category(category)
     category.each do |category|
-      if self.user.tests.joins(:category).where(categories: {title: category}).where(test_passages: {result_success: true}).count == Test.join_category(category).count
+      if TestPassage.with_result_success.where(user_id: self.user.id).joins("INNER JOIN tests ON tests.id = test_id INNER JOIN categories ON tests.category_id = categories.id AND categories.title = '#{category}' ").count == Test.join_category(category).count
         add_badge_to_user(Badge.where(rule_category: category))
       end
     end 
@@ -24,7 +24,7 @@ class Awording < ApplicationRecord
 
   def pass_success_tests_level(level, test_passage)
     level.each do |level|
-      if self.user.tests.where(level: level).where(test_passages: {result_success: true}).count  == Test.count_tests_with_level(test_passage.test.level).count
+      if TestPassage.with_result_success.where(user_id: self.user).joins(:test).where(tests:{level:level}).count == Test.count_tests_with_level(test_passage.test.level).count
         add_badge_to_user(Badge.where(rule_level: level))
       end
     end
