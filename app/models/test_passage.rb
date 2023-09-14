@@ -10,7 +10,7 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_next_question, on: :update
   before_save :before_save_add_result_success
 
-  scope :with_result_success, -> (user) { where(user_id: user.id).where(result_success: true)}
+  scope :with_result_success, -> {where(result_success: true)}
 
   def completed?
     current_question.nil?
