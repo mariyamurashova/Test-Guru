@@ -24,7 +24,7 @@ class Awording < ApplicationRecord
 
   def pass_success_tests_level(level, test_passage)
     level.each do |level|
-      if TestPassage.with_result_success.where(user_id: self.user).joins(:test).where(tests:{level:level}).count == Test.count_tests_with_level(test_passage.test.level).count
+      if TestPassage.with_result_success.where(user_id: self.user).joins(:test).where(tests: {level:level}).count == Test.count_tests_with_level(test_passage.test.level).count
         add_badge_to_user(Badge.where(rule_level: level))
       end
     end
@@ -33,7 +33,7 @@ class Awording < ApplicationRecord
   def set_active_category_level_first_attemp_badges
     @category = Badge.category_rules.active_rules.pluck(:rule_category)
     @level = Badge.level_rules.active_rules.pluck(:rule_level)
-    @first_attempt_badge = Badge.active_rules.where(rule_category: nil ).where(rule_level: nil)
+    @first_attempt_badge = Badge.active_rules.where(rule_category: nil, rule_level: nil)
   end
 
   def add_badge_to_user(badge)
