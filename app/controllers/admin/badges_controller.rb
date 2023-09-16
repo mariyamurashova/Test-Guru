@@ -1,8 +1,8 @@
 class Admin:: BadgesController < Admin::BaseController
 
   before_action :authenticate_user! 
-  before_action :set_rule, only: %i[ new create ]
-  before_action :set_badge, only: %i[ update destroy show]
+  before_action :set_rule, only: %i[ new create edit update]
+  before_action :set_badge, only: %i[ edit update destroy show]
 
   def index
     @badges = Badge.all
@@ -45,7 +45,7 @@ private
   end
 
   def set_rule
-     @rules = %i[category level first_attemp]
+     @rules = %i[category level first_attempt]
   end
 
   def badge_params
