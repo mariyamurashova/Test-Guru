@@ -8,7 +8,7 @@ class TestPassagesController < ApplicationController
 
   def result
     if @test_passage.result_success?
-      @badge_servise=BadgeService.new(@test_passage, current_user)
+      @badge_servise=BadgeService.new(@test_passage)
       @badge_servise.get_badge
     end
     render :result
@@ -18,7 +18,6 @@ class TestPassagesController < ApplicationController
     flash.delete(:notice)
     @test_passage.accept!(params[:answer_ids])
     show_errors
-
     if @test_passage.completed? 
       TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)
@@ -37,10 +36,6 @@ class TestPassagesController < ApplicationController
 
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])
-  end
-
-  def test_passage_params
-     params.require(:test_passage).permit(:result_success)
   end
 
 end
