@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :tests, through: :test_passages
   has_many :gists
   has_many :awordings
-  has_many :badges, through: :awordings
+  has_and_belongs_to_many :badges
 
   validates :email, uniqueness: true, format:  {with: URI::MailTo::EMAIL_REGEXP}
   validates :first_name, :last_name, presence: true
