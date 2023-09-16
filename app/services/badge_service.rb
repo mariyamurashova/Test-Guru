@@ -1,30 +1,35 @@
 class BadgeService
 
-  def initialize(test_passage, user)
+  def initialize(test_passage)
     @test_passage = test_passage 
-    @user = user
+    @user = test_passage.user
    end
 
   def get_badge
     Badge.all.each do |badge|
-      @user.badges << badge if send("#{badge.rule}_aword?", badge.rule_value)
+      if (send("#{badge.rule}_aword?", badge) && !recieved_earlier?(badge))
+        @user.badges << badge if send("#{badge.rule}_aword?", badge)
+      end
     end
   end
 
-  def first_attempt_aword?
-    TestPassage.where(user_id: @user.id, test_id: @test_passage.test_id).count == 1
+  def first_attempt_aword?(badge)
+   TestPassage.where(user_id: @user.id, test_id: @test_passage.test_id).count == 1 
   end
 
-  def category_aword?(category)
-   tests_pass_success.joins("INNER JOIN tests ON tests.id = test_id INNER JOIN categories ON tests.category_id = categories.id AND categories.title = '#{category}' ").count == Test.join_category(category).count 
+  def category_aword?(badge)
+    ids=Test.join_category(badge.rule_value)
+    tests_pass_success = TestPassage.with_result_success.where(test_id: ids).select(:test_id).uniq.count 
+    tests_pass_success == Test.join_category(badge.rule_value).count   
   end
 
-  def level_aword?(level)
-    tests_pass_success.joins(:test).where(tests: {level:level}).count == Test.count_tests_with_level(@test_passage.test.level).count  
+  def level_aword?(badge)
+    tests_pass_success = TestPassage.with_result_success.where(user_id: @user.id).joins(:test).where(tests: {level:badge.rule_value}).select(:test_id).uniq.count
+    tests_pass_success == Test.tests_with_level(badge.rule_value).count  
   end
 
-  def tests_pass_success
-    TestPassage.with_result_success.where(user_id: @user.id)
+  def recieved_earlier?(badge)
+    @user.badges.include?(badge)
   end
 
 end
