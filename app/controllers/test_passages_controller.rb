@@ -8,8 +8,8 @@ class TestPassagesController < ApplicationController
 
   def result
     if @test_passage.result_success?
-      @awording=current_user.awordings.new
-      @awording.get_badge?(@test_passage)
+      @badge_servise=BadgeService.new(@test_passage, current_user)
+      @badge_servise.get_badge
     end
     render :result
   end
