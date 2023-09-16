@@ -10,7 +10,5 @@ class Badge < ApplicationRecord
   validates :rule_value,  presence: true
 
   scope :active_rules, -> { where(active: true) }
-  scope :category_rules, -> { where.not(rule_category: nil) }
-  scope :level_rules, -> { where.not(rule_level: nil) }
   
 end
