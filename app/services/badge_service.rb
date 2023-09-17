@@ -18,23 +18,17 @@ class BadgeService
   end
 
   def category_aword?(badge)
-   tests_pass_success(tests_with_category(badge.rule_value))  ==  tests_with_category(badge.rule_value).count  
+    tests_with_category = Test.join_category(badge.rule_value).pluck(:id)
+    tests_pass_success(tests_with_category) == tests_with_category.count  
   end
 
   def level_aword?(badge)
-    tests_pass_success(tests_with_level(badge.rule_value.to_i)) == tests_with_level(badge.rule_value.to_i).count  
+    tests_with_level = Test.tests_with_level(badge.rule_value.to_i).pluck(:id)
+    tests_pass_success(tests_with_level) == tests_with_level.count  
   end
 
   def recieved_earlier?(badge)
     @user.badges.include?(badge) && badge.rule != "first_attempt"
-  end
-
-  def tests_with_category(rule_value)
-    Test.join_category(rule_value).pluck(:id)
-  end
-
-  def tests_with_level(rule_value)
-    Test.tests_with_level(rule_value).pluck(:id)
   end
 
   def tests_pass_success(tests_ids)
