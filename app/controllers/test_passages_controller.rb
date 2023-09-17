@@ -10,7 +10,6 @@ class TestPassagesController < ApplicationController
     if @test_passage.result_success?
       @badge_servise=BadgeService.new(@test_passage)
       @badge_servise.get_badge
-    end
     render :result
   end
     
