@@ -7,11 +7,18 @@ class BadgeService
 
   def get_badge
     Badge.all.each do |badge|
+      @add_new_badge = false
       if (send("#{badge.rule}_aword?", badge) && !recieved_earlier?(badge))
         @user.badges << badge if send("#{badge.rule}_aword?", badge)
+        @add_new_badge = true
       end
     end
   end
+
+  def add_new_badge?
+    @add_new_badge == true
+  end
+
 
   def first_attempt_aword?(badge)
    TestPassage.with_result_success.where(user_id: @user.id, test_id: @test_passage.test_id).count == 1 
