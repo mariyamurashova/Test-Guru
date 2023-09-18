@@ -3,34 +3,33 @@ class BadgeService
   def initialize(test_passage)
     @test_passage = test_passage 
     @user = test_passage.user
+    @user_badges = @user.badges
    end
 
-  def get_badge
+  def call_badge
     Badge.all.each do |badge|
-      @add_new_badge = false
       if (send("#{badge.rule}_aword?", badge) && !recieved_earlier?(badge))
-        @user.badges << badge if send("#{badge.rule}_aword?", badge)
-        @add_new_badge = true
+        @user.badges << badge if send("#{badge.rule}_aword?", badge.rule_value)
       end
     end
   end
 
   def add_new_badge?
-    @add_new_badge == true
+    @user_badges.count > @user.badges.count
   end
 
 
-  def first_attempt_aword?(badge)
+  def first_attempt_aword?(_badge)
    TestPassage.with_result_success.where(user_id: @user.id, test_id: @test_passage.test_id).count == 1 
   end
 
-  def category_aword?(badge)
-    tests_with_category = Test.join_category(badge.rule_value).pluck(:id)
+  def category_aword?(rule_value)
+    tests_with_category = Test.join_category(rule_value).pluck(:id)
     tests_pass_success(tests_with_category) == tests_with_category.count  
   end
 
-  def level_aword?(badge)
-    tests_with_level = Test.tests_with_level(badge.rule_value.to_i).pluck(:id)
+  def level_aword?(rule_value)
+    tests_with_level = Test.tests_with_level(rule_value).pluck(:id)
     tests_pass_success(tests_with_level) == tests_with_level.count  
   end
 
