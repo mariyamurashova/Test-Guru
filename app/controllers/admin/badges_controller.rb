@@ -17,7 +17,6 @@ class Admin:: BadgesController < Admin::BaseController
 
   def create
     @badge = Badge.new(badge_params)
-    byebug
       if @badge.save
         redirect_to [:admin, @badge], notice: t('.success')
       else
