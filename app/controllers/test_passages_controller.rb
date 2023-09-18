@@ -9,11 +9,10 @@ class TestPassagesController < ApplicationController
   def result
     if @test_passage.result_success?
       @badge_servise=BadgeService.new(@test_passage)
-      @badge_servise.get_badge
-      byebug
+     @badge_servise.call_badge
       if @badge_servise.add_new_badge? 
         flash[:notice] = "You got new badge. You can view it #{view_context.link_to('here', badges_path)}".html_safe
-      end
+     end
     end
   end
     
