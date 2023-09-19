@@ -7,13 +7,20 @@ class TestPassagesController < ApplicationController
   end
 
   def result
+    if @test_passage.result_success?
+      @badge_servise=BadgeService.new(@test_passage)
+     @badge_servise.call_badge
+      if @badge_servise.add_new_badge? 
+        flash[:notice] = "You got new badge. You can view it #{view_context.link_to('here', badges_path)}".html_safe
+     end
+    end
   end
     
   def update
     flash.delete(:notice)
     @test_passage.accept!(params[:answer_ids])
     show_errors
-    if @test_passage.completed?
+    if @test_passage.completed? 
       TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)
     else

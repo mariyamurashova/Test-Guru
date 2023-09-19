@@ -1,0 +1,34 @@
+<h1><%=@badge.title%></h1>
+
+<%= form_with(model:[:admin, @badge]) do |form| %>
+  <%= render 'shared/errors', resource: @badge %>
+  <p> 
+    <%= form.label :title %><br>
+    <%= form.text_field :title, value: @badge.title %><br>
+  </p>
+
+  <p> 
+    <%= form.label :image %><br>
+    <% if @badge.image.presence %>
+      <%= image_tag @badge.image %><br>
+    <%end%>
+   <%= form.file_field :image %>
+  </p>
+
+   <p> 
+    <%= form.label :rule %><br>
+    <%= form.select(:rule, options_for_select(@rules)) %><br>
+  </p>
+
+  <P>  
+    <%= form.label :rule_value%>
+    <%= form.text_field :rule_value %>
+  </p>
+
+    <%= form.label :active %>
+    <%= form.check_box  :active, {checked: true}, value: :active %><br>
+
+  <p><%= form.submit %></p>
+  <% end%>
+
+<%=link_to t('.back'), admin_badges_path%>

@@ -1,0 +1,5 @@
+<% if current_user.badges  %>
+  <% current_user.badges.each do|b| %>
+    <%= image_tag b.image %>
+   <% end %>
+ <% end %>

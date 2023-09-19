@@ -1,0 +1,8 @@
+<td> <%= link_to 'Show',admin_badge_path(resource) %> </td>
+
+<td> <%= link_to 'Edit', edit_admin_badge_path(resource) %> </td>
+
+ <td> <%= link_to t('.delete'), admin_badge_path(resource),
+                         method: :delete, 
+                         data: { confirm: ('Are you sure?') }%> 
+</td>

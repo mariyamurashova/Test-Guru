@@ -86,6 +86,9 @@ en:
         user_email: "User"
         question: "Question"
         view: "View on GitHub"
+    badges:
+      create:
+        success: "Badge was succesfully created"
 
 
   tests_mailer:

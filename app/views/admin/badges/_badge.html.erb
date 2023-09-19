@@ -1,0 +1,26 @@
+<h3><u><%=badge.title%></u></h3>
+
+<% if badge.rule == "category"%>
+  <h5>Выдается за успешное прохождение всеx тестов категории: <%=badge.rule_value%></h5>
+<% else %>
+  <% if badge.rule == "level"%>
+    <h5>Выдается за успешное прохождение всеx тестов уровня: <%=badge.rule_value%></h5>
+  <% else %>
+    <h5>Выдается за успешное прохождение теста с первой попытки.</h5>
+  <% end %>
+<%end%>
+
+<p class="h5">
+  <%= image_tag badge.image %>
+  <%= render 'actions', resource: badge %>
+</p>
+
+<p> 
+<label for="scales">Active</label>
+<% if badge.active?%>
+    <input type="checkbox" name="scales" checked />
+<% else %>
+    <input type="checkbox" id="scales" name="scales" />
+<% end %> 
+</p>
+

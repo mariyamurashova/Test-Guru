@@ -38,9 +38,13 @@ ru:
     test:
       start: "Старт"
 
-  test_passages:
+  test_passages:     
     update:
+      get_aword: "Вы получили Бейдж. Поздравляем!"
+      look_awords: "Просмотреть Бейджи вы можете здесь."
       give_answer: "Необходимо выбрать ответ!"
+    
+      
     result:
       header: "Тест %{title} успешно завершен!"
       passed_test: "Вы успешно завершили тест. Ваш результат: %{result}"
@@ -50,6 +54,7 @@ ru:
       header: "Вы проходите тест: %{title}"
       question: "Вопрос %{number} из %{amount}"
       next: "Следующий вопрос"
+
 
   gists:
     create:
@@ -90,6 +95,9 @@ ru:
         user_email: "Пользователь"
         question: "Вопрос"
         view: "Посмотреть на GitHub"
+    badges:
+      create:
+        success: "Бейдж успешно создан"
 
   tests_mailer:
     completed_test:

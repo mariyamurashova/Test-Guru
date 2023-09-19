@@ -8,20 +8,24 @@ class TestPassage < ApplicationRecord
 
   before_validation :before_validation_set_first_question, on: :create
   before_validation :before_validation_set_next_question, on: :update
+  before_save :before_save_add_result_success
+
+  scope :with_result_success, -> {where(result_success: true)}
 
   def completed?
     current_question.nil?
   end
 
   def accept!(answer_ids)
+
     return errors.add(:base, :invalid, message: "You should give the answer") if answer_ids.nil?  
 
     if  correct_answer?(answer_ids)
       self.correct_questions += 1
     end
+
     save!
   end
- 
 
   def success_rate
     self.correct_questions*100/test.questions.count
@@ -40,6 +44,11 @@ class TestPassage < ApplicationRecord
   end
 
   private
+
+   def before_save_add_result_success
+    self.result_success = true if self.success?
+  end
+
 
   def before_validation_set_first_question
     self.current_question = test.questions.first if test.present?
