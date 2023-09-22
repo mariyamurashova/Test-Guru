@@ -2,7 +2,8 @@ class TestPassagesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_test_passage, only: %i[show result update]
-
+  before_action :has_time_to_continue, only: %i[update ]
+ 
   def show
   end
 
@@ -28,6 +29,7 @@ class TestPassagesController < ApplicationController
     end
   end
 
+
   private
 
   def show_errors
@@ -40,4 +42,14 @@ class TestPassagesController < ApplicationController
     @test_passage = TestPassage.find(params[:id])
   end
 
+  def set_timer
+    @time_start = @test_passage.created_at
+    @time_end = @time_start + @test_passage.test.time_limit*60
+  end
+
+  def has_time_to_continue
+    set_timer
+    redirect_to result_test_passage_path(@test_passage) if Time.now >=@time_end
+  end
+  
 end
