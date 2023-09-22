@@ -29,7 +29,6 @@ class TestPassagesController < ApplicationController
     end
   end
 
-
   private
 
   def show_errors
@@ -51,5 +50,5 @@ class TestPassagesController < ApplicationController
     set_timer
     redirect_to result_test_passage_path(@test_passage) if Time.now >=@time_end
   end
-  
+
 end
