@@ -8,9 +8,13 @@
 
 <div class = 'timer hide'>
   <% if @test_passage.test.time_limit != 0%>
-    <input type="text" id="timer-minutes" value="<%=Time.at(@test_passage.test.time_limit.to_i).utc.strftime("%Y-%m-%d %H:%m:%S")%>" />
+    <input type="text" id="timer-minutes" value="<%=Time.at(@test_passage.created_at+@test_passage.test.time_limit*60).strftime('%a %b %d %Y %H:%M:%S')%>" />
   <% end %>
+</div>
 
+<div class="timer" id="clockdiv">  
+ <span class="minutes"></span> :
+ <span class="seconds"></span>  
 </div>
 
 <p>
