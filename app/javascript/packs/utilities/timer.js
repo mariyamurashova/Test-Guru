@@ -1,39 +1,36 @@
 document.addEventListener('turbolinks:load', function() {
 
-  var timerId = null
-  var time_limit = (new Date(document.getElementById('timer-minutes').value)).getMinutes()
-  var minute = time_limit
-  var sec = 59
-  minute--
-  window.addEventListener("load", function() {
-    sec  = window.localStorage.getItem("seconds")
-    minute = window.localStorage.getItem("minutes")
-    if (time_limit !=0) {
-      timerId = setInterval(countdownTimer, 1000);
-    }
-  })
+var deadline = new Date(document.getElementById('timer-minutes').value)
+var seconds
+var minutes
+var timeinterval
+var clock = document.getElementById('clockdiv'); 
+var minutesSpan = clock.querySelector('.minutes');  
+var secondsSpan = clock.querySelector('.seconds');
 
-  function countdownTimer() {
-    if (sec<0 || minute<0) { 
-      minute = time_limit
-      minute--
-      sec = 59
-    } 
-    minutes_text = minute < 10 ? "0"+ minute: minute
-    seconds_text = sec <10 ? "0" + sec : sec
-    document.querySelector('.timer').classList.remove('hide')
-    document.getElementById("timer-minutes").value = minutes_text + ":" + seconds_text
-    sec--
-    window.localStorage.setItem("seconds",sec)
-    if (sec == 0) {
-      minute--
-      window.localStorage.setItem("minutes",minute)
-      sec = 60
-      if (minute <= 0) {
-        $("#form-with-timer").trigger('submit.rails');
-        clearInterval(timerId);
-      }
-    }
+window.onload = function(){
+  updateClock(); // запускаем функцию один раз, чтобы избежать задержки  
+  timeinterval = setInterval(updateClock,1000); 
+}
+
+function getTimeRemaining(endtime){  
+  t = Date.parse(endtime) - Date.parse(new Date());  
+  seconds = Math.floor( (t/1000) % 60 );  
+  minutes = Math.floor( (t/1000/60) % 60 );  
+  return {  
+   'total': t,   
+   'minutes': minutes,  
+   'seconds': seconds  
+  };  
+}
+
+function updateClock(){    
+ var t = getTimeRemaining(deadline);  
+  minutesSpan.innerHTML = t.minutes;  
+  secondsSpan.innerHTML =  ('0' + t.seconds).slice(-2);;   
+    if(t.total<=0){  
+      clearInterval(timeinterval); 
+     $("#form-with-timer").trigger('submit.rails'); 
+   }  
   }
-
 })
