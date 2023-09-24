@@ -20,7 +20,7 @@ class TestPassagesController < ApplicationController
     flash.delete(:notice)
     @test_passage.accept!(params[:answer_ids])
     show_errors
-    if @test_passage.completed? || has_time_to_continue?
+    if @test_passage.completed? || @test_passage.has_time_to_continue?
       TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)
     else
@@ -39,12 +39,5 @@ class TestPassagesController < ApplicationController
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])
   end
-
-
-  def has_time_to_continue?
-    Time.now >=(@test_passage.created_at+@test_passage.test.time_limit*60)
-  end
-
-  
 
 end
