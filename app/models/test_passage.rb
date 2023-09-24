@@ -43,6 +43,11 @@ class TestPassage < ApplicationRecord
     test.questions.length
   end
 
+  def has_time_to_continue?
+    Time.now >=(self.created_at+self.test.time_limit*60)
+  end
+
+
   private
 
    def before_save_add_result_success
