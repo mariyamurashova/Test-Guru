@@ -20,7 +20,7 @@ class TestPassagesController < ApplicationController
     flash.delete(:notice)
     @test_passage.accept!(params[:answer_ids])
     show_errors
-    if @test_passage.completed? 
+    if @test_passage.completed? || @test_passage.has_time_to_continue?
       TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)
     else

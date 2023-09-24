@@ -22,6 +22,11 @@
      <%= form.check_box  :redy_for_publication, {checked: true}, value: @test.redy_for_publication %><br>
   </p>
 
+   <p> 
+     <%= form.label :time_limit %>
+     <%= form.text_field  :time_limit, value: @test.time_limit %><br>
+  </p>
+
   <p><%= form.submit %></p>
 <% end%>
 

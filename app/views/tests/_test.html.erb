@@ -3,5 +3,6 @@
     <td><%=test.category.title%></td>
     <td><%=test.level%></td>
     <td><%=questions_amount(test)%></td>
+    <td><%=test.time_limit%></td>
     <td><%= button_to  t('.start'), start_test_path(test) %></td>
 </tr>

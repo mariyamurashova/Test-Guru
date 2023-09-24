@@ -12,7 +12,8 @@ import "jquery"
 import "packs/utilities/sorting" 
 import "packs/utilities/check_password" 
 import "packs/utilities/form_inline" 
-import "packs/utilities/progress_bar" 
+import "packs/utilities/progress_bar"
+import "packs/utilities/timer" 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
